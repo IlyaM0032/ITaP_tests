@@ -3,4 +3,6 @@ project(ITaP_tests)
 
 set(CMAKE_CXX_STANDARD 20)
 
-add_executable(ITaP_tests main.cpp)
+add_executable(ITaP_tests main.cpp
+        utils.cpp
+        utils.h)
