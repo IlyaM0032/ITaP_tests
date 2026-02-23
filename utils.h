@@ -1,6 +1,6 @@
-//
-// Created by ilyam0032 on 21.02.26.
-//
+// utils.h
+// Общий файл контрольных работ
+// Студент группы 4503, Илья М, 2026
 
 #ifndef UTILS_H
 #define UTILS_H
