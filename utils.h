@@ -6,5 +6,6 @@
 #define UTILS_H
 
 int read_int();
+void tests_menu();
 
 #endif //UTILS_H
