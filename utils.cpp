@@ -2,6 +2,8 @@
 // Общий файл контрольных работ
 // Студент группы 4503, Илья М, 2026
 
+#include "utils.h"
+
 #include <iostream>
 #include <string>
 #include "test_1.h"
@@ -39,11 +41,11 @@ void tests_menu() {
         while (!completed) {
             decision = read_int();
             switch (decision) {
-            case 1:
+            case OPTION_TEST_1:
                 test_1();
                 completed = true;
                 break;
-            case 0:
+            case OPTION_EXIT:
                 return;
             default:
                 std::cout << "Нет такого пункта меню. Попробуйте ещё раз: ";
