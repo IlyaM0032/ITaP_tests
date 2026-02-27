@@ -6,7 +6,28 @@
 #define ITAP_TESTS_TEST_1_H
 #include <string>
 
+#define CURRENT_YEAR 2026
+
+#define SAMPLE_BUS_NUMBER "В522ОУ"
+#define SAMPLE_BUS_ROUTE 68
+#define SAMPLE_BUS_BRAND "Volgabus"
+#define SAMPLE_BUS_YEAR 2025
+#define SAMPLE_BUS_KM 4321
+#define SAMPLE_BUS_DRIVER "Яковлев И. А."
+
 void test_1();
+void test_1_menu();
+
+
+
+enum test_1_menu_options {
+    OPTION_BUSES_BY_ROUTE = 1,
+    OPTION_BUSES_OVER_10_YEARS = 2,
+    OPTION_BUSES_OVER_10K_KM = 3,
+    OPTION_PRINT_LIST = 4,
+    OPTION_PRINT_ALL = 5,
+    OPTION_ADD_BUS = 6,
+};
 
 class Bus {
     std::string number;
@@ -35,7 +56,7 @@ class Bus {
     void set_kilometrage(int p_km) {kilometrage = p_km;}
     void set_driver(std::string p_driver) {driver = std::move(p_driver);}
 
-    void show();
+    void show() const;
 
 };
 #endif // ITAP_TESTS_TEST_1_H

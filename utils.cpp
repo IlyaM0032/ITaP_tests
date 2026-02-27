@@ -3,10 +3,11 @@
 // Студент группы 4503, Илья М, 2026
 
 #include "utils.h"
+#include "test_1.h"
 
 #include <iostream>
 #include <string>
-#include "test_1.h"
+
 
 int read_int() {
     std::string input;
@@ -31,10 +32,13 @@ void tests_menu() {
         std::string input;
         int decision = 0;
 
+        std::cout << std::endl;
         std::cout << "1) Выбрать контрольную работу 1" << std::endl;
         // std::cout << "2) Выбрать контрольную работу 2" << std::endl;
         // std::cout << "3) Выбрать контрольную работу 3" << std::endl;
         std::cout << "0) Выход" << std::endl;
+        std::cout << std::endl;
+
         std::cout << "Выберите соответствующий пункт меню: ";
 
         bool completed = false;
