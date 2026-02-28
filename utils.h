@@ -6,6 +6,7 @@
 #define UTILS_H
 
 int read_int();
+int read_natural();
 void tests_menu();
 enum tests_menu_options {
     OPTION_EXIT = 0,

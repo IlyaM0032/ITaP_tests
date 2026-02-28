@@ -4,11 +4,14 @@
 
 #include "utils.h"
 
+#include <locale>
+
 #ifdef _MSC_VER
 #include <windows.h>
 #endif
 
 int main() {
+    std::setlocale(LC_CTYPE, "ru_RU.UTF-8");
     #ifdef _MSC_VER
     SetConsoleOutputCP(CP_UTF8);
     #endif
