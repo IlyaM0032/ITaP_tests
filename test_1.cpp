@@ -9,23 +9,23 @@
 #include "utils.h"
 
 void Bus::show() const {
-    std::wcout << L"Номер автобуса: " << number
-              << L" Номер маршрута: " << route_number
-              << L" Марка: \"" << brand
-              << L"\" Год начала эксплуатации: " << exploitation_start_year
-              << L" Пробег: " << kilometrage
-              << L" Водитель: \"" << driver << L"\""
+    std::cout << "Номер автобуса: " << number
+              << " Номер маршрута: " << route_number
+              << " Марка: \"" << brand
+              << "\" Год начала эксплуатации: " << exploitation_start_year
+              << " Пробег: " << kilometrage
+              << " Водитель: \"" << driver << "\""
               << std::endl;
 }
 
 void test_1() {
-    std::wcout << L"\n***Первая контрольная работа***\n";
+    std::cout << "\n***Первая контрольная работа***\n";
     test_1_menu();
 }
 
 std::list<Bus> get_buses_by_route(const std::list<Bus>& buses) {
     std::list<Bus> buses_by_route;
-    std::wcout << L"Введите номер маршрута (натуральное число): ";
+    std::cout << "Введите номер маршрута (натуральное число): ";
     int route = read_natural();
 
     for (const Bus& i : buses) {
@@ -55,7 +55,7 @@ std::list<Bus> get_buses_over_10k_km(const std::list<Bus>& buses) {
 
 void print_buses(const std::list<Bus>& buses) {
     if (buses.empty()) {
-        std::wcout << L"Список пуст" << std::endl;
+        std::cout << "Список пуст" << std::endl;
     } else {
         for (const Bus& i : buses) {i.show();}
     }
@@ -64,47 +64,50 @@ void print_buses(const std::list<Bus>& buses) {
 void add_bus(std::list<Bus>& buses) {
     bool valid = false;
 
-    std::wstring number;
-    std::wcout << L"Введите номер автобуса в формате \"A111AA\": ";
-    const std::wregex number_pattern(L"^[АВЕКМНОРСТУХABEKMHOPCTYX]\\d{3}[АВЕКМНОРСТУХABEKMHOPCTYX]{2}$");
+    std::string number;
+    std::cout << "Введите номер автобуса в формате \"A111AA\" (латинскими символами): ";
+    const std::regex number_pattern("^[ABEKMHOPCTYX]\\d{3}[ABEKMHOPCTYX]{2}$");
     do {
-        std::getline(std::wcin, number);
+        std::getline(std::cin, number);
         valid = std::regex_match(number, number_pattern);
-        if (!valid) std::wcout << L"Введенное значение \"" << number << L"\" не соответствует формату. Попробуйте ещё раз: ";
+        if (!valid) std::cout << "Введенное значение \"" << number << "\" не соответствует формату. Попробуйте ещё раз: ";
     } while (!valid);
 
 
-    std::wcout << L"Введите номер маршрута (натуральное число): ";
+    std::cout << "Введите номер маршрута (натуральное число): ";
     int route = read_natural();
 
 
-    std::wstring brand;
-    std::wcout << L"Введите марку автобуса: ";
-    std::getline(std::wcin, brand);
+    std::string brand;
+    std::cout << "Введите марку автобуса: ";
+    std::getline(std::cin, brand);
 
 
-    std::wcout << L"Введите год начала эксплуатации автобуса (натуральное число): ";
+    std::cout << "Введите год начала эксплуатации автобуса (натуральное число): ";
     int year = read_natural();
 
 
-    std::wcout << L"Введите пробег автобуса (натуральное число): ";
+    std::cout << "Введите пробег автобуса (натуральное число): ";
     int kilometrage = read_natural();
 
 
-    std::wstring driver;
-    std::wcout << L"Введите фамилию и инициалы водителя автобуса в формате Фамилия A. Б. : ";
-    std::wregex driver_pattern(L"^[А-Я]*[а-я] [А-Я]\\. [А-Я]\\.$");
+    std::string driver;
+    std::cout << "Введите фамилию и инициалы водителя автобуса в формате Фамилия A. Б. (латинскими символами): ";
+    std::regex driver_pattern("^[A-Z][a-z]* [A-Z]\\. [A-Z]\\.$");
     do {
-        std::getline(std::wcin, driver);
+        std::getline(std::cin, driver);
         valid = std::regex_match(driver, driver_pattern);
-        if (!valid) std::wcout << L"Введенное значение \"" << driver << L"\" не соответствует формату. Попробуйте ещё раз: ";
+        if (!valid) std::cout << "Введенное значение \"" << driver << "\" не соответствует формату. Попробуйте ещё раз: ";
     } while (!valid);
 
 
     buses.emplace_back(number, route, brand, year, kilometrage, driver);
 }
 
-
+void remove_buses(std::list<Bus>& buses) {
+    buses.clear();
+    print_buses(buses);
+}
 
 void test_1_menu() {
     std::list<Bus> buses;
@@ -121,20 +124,21 @@ void test_1_menu() {
         );
 
     while (true) {
-        std::wstring input;
+        std::string input;
         int decision = 0;
 
-        std::wcout << std::endl;
-        std::wcout << L"1) Получить список автобусов для заданного номера маршрута" << std::endl;
-        std::wcout << L"2) Получить список автобусов, которые эксплуатируются больше 10 лет" << std::endl;
-        std::wcout << L"3) Получить список автобусов, пробег у которых больше 10 000 км" << std::endl;
-        std::wcout << L"4) Вывести полученный список" << std::endl;
-        std::wcout << L"5) Вывести список всех автобусов" << std::endl;
-        std::wcout << L"6) Добавить автобус" << std::endl;
-        std::wcout << L"0) Вернуться в меню выбора контрольных работ" << std::endl;
-        std::wcout << std::endl;
+        std::cout << std::endl;
+        std::cout << "1) Получить список автобусов для заданного номера маршрута" << std::endl;
+        std::cout << "2) Получить список автобусов, которые эксплуатируются больше 10 лет" << std::endl;
+        std::cout << "3) Получить список автобусов, пробег у которых больше 10 000 км" << std::endl;
+        std::cout << "4) Вывести полученный список" << std::endl;
+        std::cout << "5) Вывести список всех автобусов" << std::endl;
+        std::cout << "6) Добавить автобус" << std::endl;
+        std::cout << "7) Удалить все автобусы из списка" << std::endl;
+        std::cout << "0) Вернуться в меню выбора контрольных работ" << std::endl;
+        std::cout << std::endl;
 
-        std::wcout << L"Выберите соответствующий пункт меню: ";
+        std::cout << "Выберите соответствующий пункт меню: ";
 
         bool completed = false;
         while (!completed) {
@@ -142,19 +146,19 @@ void test_1_menu() {
             switch (decision) {
             case OPTION_BUSES_BY_ROUTE:
                 got_buses = get_buses_by_route(buses);
-                std::wcout << L"Успешно! Вывести полученный список можно выбрав пункт 4" << std::endl;
+                std::cout << "Успешно! Вывести полученный список можно выбрав пункт 4" << std::endl;
                 completed = true;
                 break;
 
             case OPTION_BUSES_OVER_10_YEARS:
                 got_buses = get_buses_over_10_years(buses);
-                std::wcout << L"Успешно! Вывести полученный список можно выбрав пункт 4" << std::endl;
+                std::cout << "Успешно! Вывести полученный список можно выбрав пункт 4" << std::endl;
                 completed = true;
                 break;
 
             case OPTION_BUSES_OVER_10K_KM:
-                got_buses = get_buses_by_route(buses);
-                std::wcout << L"Успешно! Вывести полученный список можно выбрав пункт 4" << std::endl;
+                got_buses = get_buses_over_10k_km(buses);
+                std::cout << "Успешно! Вывести полученный список можно выбрав пункт 4" << std::endl;
                 completed = true;
                 break;
 
@@ -176,11 +180,17 @@ void test_1_menu() {
                 completed = true;
                 break;
 
+            case OPTION_EMPTY_BUS_LIST:
+                remove_buses(buses);
+
+                completed = true;
+                break;
+
             case OPTION_EXIT:
                 return;
 
             default:
-                std::wcout << L"Нет такого пункта меню. Попробуйте ещё раз: ";
+                std::cout << "Нет такого пункта меню. Попробуйте ещё раз: ";
             }
         }
     }

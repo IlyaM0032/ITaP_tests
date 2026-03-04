@@ -10,17 +10,17 @@
 
 
 int read_int() {
-    std::wstring input;
+    std::string input;
     bool success = false;
     int result = 0;
 
     do {
         try {
-            std::getline(std::wcin, input);
+            std::getline(std::cin, input);
             result = std::stoi(input);
             success = true;
-        } catch (std::invalid_argument &e) {
-            std::wcout << L"Некорректный ввод. Попробуйте ещё раз: ";
+        } catch (std::invalid_argument &) {
+            std::cout << "Некорректный ввод. Попробуйте ещё раз: ";
         }
     } while (!success);
 
@@ -32,23 +32,23 @@ int read_natural() {
     do {
         result = read_int();
         if (result > 0) return result;
-        std::wcout << L"Полученное число не натуральное. Попробуйте ещё раз: ";
+        std::cout << "Полученное число не натуральное. Попробуйте ещё раз: ";
     } while (true);
 }
 
 void tests_menu() {
     while (true) {
-        std::wstring input;
+        std::string input;
         int decision = 0;
 
-        std::wcout << std::endl;
-        std::wcout << L"1) Выбрать контрольную работу 1" << std::endl;
-        // std::wcout << L"2) Выбрать контрольную работу 2" << std::endl;
-        // std::wcout << L"3) Выбрать контрольную работу 3" << std::endl;
-        std::wcout << L"0) Выход" << std::endl;
-        std::wcout << std::endl;
+        std::cout << std::endl;
+        std::cout << "1) Выбрать контрольную работу 1" << std::endl;
+        // std::cout << "2) Выбрать контрольную работу 2" << std::endl;
+        // std::cout << "3) Выбрать контрольную работу 3" << std::endl;
+        std::cout << "0) Выход" << std::endl;
+        std::cout << std::endl;
 
-        std::wcout << L"Выберите соответствующий пункт меню: ";
+        std::cout << "Выберите соответствующий пункт меню: ";
 
         bool completed = false;
         while (!completed) {
@@ -61,7 +61,7 @@ void tests_menu() {
             case OPTION_EXIT:
                 return;
             default:
-                std::wcout << L"Нет такого пункта меню. Попробуйте ещё раз: ";
+                std::cout << "Нет такого пункта меню. Попробуйте ещё раз: ";
             }
         }
     }
