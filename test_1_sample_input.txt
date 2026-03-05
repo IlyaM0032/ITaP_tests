@@ -1,0 +1,70 @@
+6
+B522OY
+68
+Volgabus
+2016
+10092
+Yakovlev I. A.
+6
+E122OM
+68
+ПAЗ
+2012
+14371
+Matveeva V. A.
+6
+C643MH
+68
+KAMAЗ
+2010
+8681
+Alexeev M. M.
+6
+K263BT
+68
+Mercedes
+2015
+13930
+Gushina P. I.
+6
+T770KC
+242
+HEФAЗ
+2013
+6250
+Tsarev K. L.
+6
+Y585XT
+242
+Scania
+2014
+8566
+Belov M. M.
+6
+M875AX
+242
+ЛиAЗ
+2019
+6756
+Bespalov M. C.
+6
+O852PH
+297
+MAЗ
+2017
+12644
+Semenov P. A.
+6
+Y445EO
+297
+Volgabus
+2022
+7125
+Savin M. A.
+6
+O441XB
+130
+ПAЗ
+2026
+14334
+Sofronov S. D.
