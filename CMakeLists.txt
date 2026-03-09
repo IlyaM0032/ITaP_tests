@@ -6,5 +6,8 @@ set(CMAKE_CXX_STANDARD 20)
 add_executable(ITaP_tests main.cpp
         utils.cpp
         utils.h
-        test_1.cpp
-        test_1.h)
+        task_1.cpp
+        task_1.h
+        console_interface.cpp
+        console_interface.h
+)

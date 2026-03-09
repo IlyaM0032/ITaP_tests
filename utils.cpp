@@ -3,7 +3,7 @@
 // Студент группы 4503, Илья М, 2026
 
 #include "utils.h"
-#include "test_1.h"
+#include "task_1.h"
 
 #include <iostream>
 #include <string>
@@ -27,43 +27,31 @@ int read_int() {
     return result;
 }
 
-int read_natural() {
-    int result = 0;
+double read_double() {
+    std::string input;
+    bool success = false;
+    double result = 0;
+
     do {
-        result = read_int();
-        if (result > 0) return result;
-        std::cout << "Полученное число не натуральное. Попробуйте ещё раз: ";
-    } while (true);
+        try {
+            std::getline(std::cin, input);
+            result = std::stod(input);
+            success = true;
+        } catch (std::invalid_argument &) {
+            std::cout << "Некорректный ввод. Попробуйте ещё раз: ";
+        }
+    } while (!success);
+
+    return result;
 }
 
-void tests_menu() {
-    while (true) {
-        std::string input;
-        int decision = 0;
-
-        std::cout << std::endl;
-        std::cout << "1) Выбрать контрольную работу 1" << std::endl;
-        // std::cout << "2) Выбрать контрольную работу 2" << std::endl;
-        // std::cout << "3) Выбрать контрольную работу 3" << std::endl;
-        std::cout << "0) Выход" << std::endl;
-        std::cout << std::endl;
-
-        std::cout << "Выберите соответствующий пункт меню: ";
-
-        bool completed = false;
-        while (!completed) {
-            decision = read_int();
-            switch (decision) {
-            case OPTION_TEST_1:
-                test_1();
-                completed = true;
-                break;
-            case OPTION_EXIT:
-                return;
-            default:
-                std::cout << "Нет такого пункта меню. Попробуйте ещё раз: ";
-            }
-        }
-    }
-
+int read_natural() {
+    int result = 0;
+    bool valid = false;
+    do {
+        result = read_int();
+        valid = (result > 0);
+        if (!valid) std::cout << "Полученное число не натуральное. Попробуйте ещё раз: ";
+    } while (!valid);
+    return result;
 }
