@@ -1,6 +1,6 @@
-//
-// Created by ilyam0032 on 10.03.2026.
-//
+// console_interface.h
+// Консольный интерфейс программы
+// Студент группы 4503, Илья М, 2026
 
 #ifndef ITAP_TESTS_MAIN_MENU_H
 #define ITAP_TESTS_MAIN_MENU_H

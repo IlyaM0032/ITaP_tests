@@ -1,6 +1,6 @@
-//
-// Created by ilyam0032 on 10.03.2026.
-//
+// console_interface.cpp
+// Консольный интерфейс программы
+// Студент группы 4503, Илья М, 2026
 
 #include "console_interface.h"
 
@@ -132,7 +132,7 @@ void add_bus(std::list<Bus>& buses) {
 
     bool success = false;
 
-    std::cout << "Введите номер автобуса в формате \"A111AA\" (латинскими символами): ";
+    std::cout << "Введите номер автобуса в формате \"A111AA\" (латинскими символами, совпадающими с кириллицей): ";
     do {
         std::string number;
         std::getline(std::cin, number);

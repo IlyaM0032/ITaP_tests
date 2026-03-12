@@ -34,7 +34,7 @@ class Bus {
 
     public:
     Bus() :
-    number("A111AA"), route_number(1), exploitation_start_year(1), kilometrage(0), driver("Ivanov I. I.")
+    route_number(0), exploitation_start_year(0), kilometrage(0)
     {}
 
     std::string get_number() const {return number;}
