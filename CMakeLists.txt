@@ -10,4 +10,6 @@ add_executable(ITaP_tests main.cpp
         task_1.h
         console_interface.cpp
         console_interface.h
+        task_2.cpp
+        task_2.h
 )

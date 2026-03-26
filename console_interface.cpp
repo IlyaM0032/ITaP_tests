@@ -5,6 +5,7 @@
 #include "console_interface.h"
 
 #include "task_1.h"
+#include "task_2.h"
 #include "utils.h"
 
 #include <iostream>
@@ -15,7 +16,7 @@ void main_menu() {
     do {
         std::cout << std::endl;
         std::cout << "1) Выбрать контрольную работу 1" << std::endl;
-        // std::cout << "2) Выбрать контрольную работу 2" << std::endl;
+        std::cout << "2) Выбрать контрольную работу 2" << std::endl;
         // std::cout << "3) Выбрать контрольную работу 3" << std::endl;
         std::cout << "0) Выход" << std::endl;
         std::cout << std::endl;
@@ -24,9 +25,13 @@ void main_menu() {
         bool input_again = false;
         do {
             input_again = false;
-            switch (int decision = read_int()) {
+            switch (read_int()) {
             case OPTION_TEST_1:
                 task_1_menu();
+                break;
+
+            case OPTION_TEST_2:
+                task_2_menu();
                 break;
 
             case OPTION_EXIT:
@@ -72,8 +77,7 @@ void task_1_menu() {
         do {
             int selected_route = 0;
             input_again = false;
-            int decision = read_int();
-            switch (decision) {
+            switch (read_int()) {
             case OPTION_BUSES_BY_ROUTE:
                 std::cout << "Введите номер маршрута (натуральное число): ";
                 selected_route = read_natural();
@@ -183,4 +187,190 @@ void add_bus(std::list<Bus>& buses) {
 void remove_buses(std::list<Bus>& buses) {
     buses.clear();
     print_buses(buses);
+}
+
+void task_2_menu() {
+    std::list<Product> products;
+    std::list<Product_On_Storage> products_on_storage;
+
+
+    bool continue_cycle = true;
+    do {
+        std::cout << std::endl;
+        std::cout << "1) Добавить в список товар" << std::endl;
+        std::cout << "2) Добавить в списки товар, находящийся на складе" << std::endl;
+        std::cout << "3) Вывести список всех товаров" << std::endl;
+        std::cout << "4) Вывести список всех товаров, находящихся на складе" << std::endl;
+        std::cout << "5) Очистить списки" << std::endl;
+        std::cout << "0) Выход" << std::endl;
+
+        std::cout << std::endl;
+        std::cout << "Выберите соответствующий пункт меню: ";
+
+
+        bool input_again = false;
+        do {
+            input_again = false;
+            switch (read_int()) {
+            case OPTION_ADD_REGULAR_PRODUCT:
+                add_regular_product(products);
+                break;
+
+            case OPTION_ADD_PRODUCT_ON_STORAGE:
+                add_product_on_storage(products, products_on_storage);
+                break;
+
+            case OPTION_PRINT_PRODUCTS_LIST:
+                print_products(products);
+                break;
+
+            case OPTION_PRINT_PRODUCTS_ON_STORAGE_LIST:
+                print_products(products_on_storage);
+                break;
+
+            case OPTION_CLEAR_LISTS:
+                products.clear();
+                products_on_storage.clear();
+                break;
+
+
+            case OPTION_EXIT:
+                continue_cycle = false;
+                break;
+
+            default:
+                std::cout << "Нет такого пункта меню. Попробуйте ещё раз: ";
+                input_again = true;
+            }
+        } while (input_again);
+    } while (continue_cycle);
+}
+
+void add_regular_product(std::list<Product>& products) {
+    Product product_to_add;
+
+    bool success = false;
+
+    std::cout << "Введите название товара (на латинице): ";
+    do {
+        std::string name;
+        std::getline(std::cin, name);
+        success = product_to_add.set_name(name);
+        if (!success) std::cout << "Введенное значение \"" << name << "\" не соответствует требованиям. Попробуйте ещё раз: ";
+    } while (!success);
+
+    std::cout << "Введите количество товара: ";
+    do {
+        const double quantity = read_double();
+        success = product_to_add.set_quantity(quantity);
+        if (!success) std::cout << "Введенное значение \"" << quantity << "\" не соответствует требованиям. Попробуйте ещё раз: ";
+    } while (!success);
+
+    std::cout << "Введите цену за единицу товара: ";
+    do {
+        const double unit_price = read_double();
+        success = product_to_add.set_unit_price(unit_price);
+        if (!success) std::cout << "Введенное значение \"" << unit_price << "\" не соответствует требованиям. Попробуйте ещё раз: ";
+    } while (!success);
+
+    std::cout << "Введите производителя товара (на латинице): ";
+    do {
+        std::string manufacturer;
+        std::getline(std::cin, manufacturer);
+        success = product_to_add.set_manufacturer(manufacturer);
+        if (!success) std::cout << "Введенное значение \"" << manufacturer << "\" не соответствует требованиям. Попробуйте ещё раз: ";
+    } while (!success);
+
+    products.push_back(product_to_add);
+}
+void add_product_on_storage(std::list<Product>& products, std::list<Product_On_Storage>& products_on_storage) {
+    Product_On_Storage product_to_add;
+
+    bool success = false;
+    std::cout << "Введите название товара (на латинице): ";
+    do {
+        std::string name;
+        std::getline(std::cin, name);
+        success = product_to_add.set_name(name);
+        if (!success) std::cout << "Введенное значение \"" << name << "\" не соответствует требованиям. Попробуйте ещё раз: ";
+    } while (!success);
+
+    std::cout << "Введите количество товара: ";
+    do {
+        const double quantity = read_double();
+        success = product_to_add.set_quantity(quantity);
+        if (!success) std::cout << "Введенное значение \"" << quantity << "\" не соответствует требованиям. Попробуйте ещё раз: ";
+    } while (!success);
+
+    std::cout << "Введите цену за единицу товара: ";
+    do {
+        const double unit_price = read_double();
+        success = product_to_add.set_unit_price(unit_price);
+        if (!success) std::cout << "Введенное значение \"" << unit_price << "\" не соответствует требованиям. Попробуйте ещё раз: ";
+    } while (!success);
+
+    std::cout << "Введите производителя товара (на латинице): ";
+    do {
+        std::string manufacturer;
+        std::getline(std::cin, manufacturer);
+        success = product_to_add.set_manufacturer(manufacturer);
+        if (!success) std::cout << "Введенное значение \"" << manufacturer << "\" не соответствует требованиям. Попробуйте ещё раз: ";
+    } while (!success);
+
+
+    // [[nodiscard]] bool set_arrival_date(const std::string& formatted_string);
+
+    std::cout << "Укажите местоположение товара на складе" << std::endl;
+    std::cout << "Введите сектор (один заглавный символ латиницы): ";
+    do {
+        const char sector = read_char();
+        success = product_to_add.set_storage_sector(sector);
+        if (!success) std::cout << "Введенное значение \"" << sector << "\" не соответствует требованиям. Попробуйте ещё раз: ";
+    } while (!success);
+
+    std::cout << "Введите номер ряда (натуральное число): ";
+    do {
+        const int row = read_natural();
+        success = product_to_add.set_storage_row(row);
+        if (!success) std::cout << "Введенное значение \"" << row << "\" не соответствует требованиям. Попробуйте ещё раз: ";
+    } while (!success);
+
+    std::cout << "Введите номер стеллажа (натуральное число): ";
+    do {
+        const int shelf = read_natural();
+        success = product_to_add.set_storage_shelf(shelf);
+        if (!success) std::cout << "Введенное значение \"" << shelf << "\" не соответствует требованиям. Попробуйте ещё раз: ";
+    } while (!success);
+
+    std::cout << "Введите уровень стеллажа (натуральное число): ";
+    do {
+        const int layer = read_natural();
+        success = product_to_add.set_storage_layer(layer);
+        if (!success) std::cout << "Введенное значение \"" << layer << "\" не соответствует требованиям. Попробуйте ещё раз: ";
+    } while (!success);
+
+    std::cout << "Введите дату поступления товара на склад (в формате \"31.12.1999 23:59\"): ";
+    do {
+        std::string arrival_date;
+        std::getline(std::cin, arrival_date);
+        success = product_to_add.set_arrival_date(arrival_date);
+        if (!success) std::cout << "Введенное значение \"" << arrival_date << "\" не соответствует требованиям. Попробуйте ещё раз: ";
+    } while (!success);
+
+    products.push_back(product_to_add);
+    products_on_storage.push_back(product_to_add);
+}
+[[deprecated]]void print_products(const std::list<Product>& products) {
+    if (products.empty()) {
+        std::cout << "Список пуст" << std::endl;
+    } else {
+        for (const Product& i : products) {std::cout << i.show() << std::endl;}
+    }
+}
+[[deprecated]]void print_products(const std::list<Product_On_Storage>& products) {
+    if (products.empty()) {
+        std::cout << "Список пуст" << std::endl;
+    } else {
+        for (const Product_On_Storage& i : products) {std::cout << i.show() << std::endl;}
+    }
 }

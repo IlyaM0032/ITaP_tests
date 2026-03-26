@@ -5,6 +5,7 @@
 #ifndef ITAP_TESTS_MAIN_MENU_H
 #define ITAP_TESTS_MAIN_MENU_H
 #include "task_1.h"
+#include "task_2.h"
 
 enum main_menu_options {
     OPTION_EXIT = 0,
@@ -22,6 +23,15 @@ enum test_1_menu_options {
     OPTION_ADD_BUS = 6,
     OPTION_EMPTY_BUS_LIST = 7,
 };
+
+enum test_2_menu_options {
+    OPTION_ADD_REGULAR_PRODUCT = 1,
+    OPTION_ADD_PRODUCT_ON_STORAGE = 2,
+    OPTION_PRINT_PRODUCTS_LIST = 3,
+    OPTION_PRINT_PRODUCTS_ON_STORAGE_LIST = 4,
+    OPTION_CLEAR_LISTS = 5,
+
+};
 void main_menu();
 
 void task_1_menu();
@@ -29,5 +39,10 @@ void print_buses(const std::list<Bus> & buses);
 void add_bus(std::list<Bus>& buses);
 void remove_buses(std::list<Bus>& buses);
 
+void task_2_menu();
+void add_regular_product(std::list<Product>& products);
+void add_product_on_storage(std::list<Product>& products, std::list<Product_On_Storage>& products_on_storage);
+[[deprecated]] void print_products(const std::list<Product>& products);
+[[deprecated]] void print_products(const std::list<Product_On_Storage>& products);
 
 #endif // ITAP_TESTS_MAIN_MENU_H
