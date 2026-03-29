@@ -66,12 +66,11 @@ class Product_On_Storage : public Product {
     int storage_layer;
     time_t arrival_date;
 
-
-
     public:
     Product_On_Storage() :
     storage_sector('\0'), storage_row(0),
     storage_shelf(0), storage_layer(0), arrival_date(0) {}
+    ~Product_On_Storage() override = default;
 
     [[nodiscard]] char get_storage_sector() const {return storage_sector;}
     [[nodiscard]] int get_storage_row() const {return storage_row;}

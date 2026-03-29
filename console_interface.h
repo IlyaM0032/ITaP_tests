@@ -40,9 +40,7 @@ void add_bus(std::list<Bus>& buses);
 void remove_buses(std::list<Bus>& buses);
 
 void task_2_menu();
-void add_regular_product(std::list<Product>& products);
-void add_product_on_storage(std::list<Product>& products, std::list<Product_On_Storage>& products_on_storage);
-[[deprecated]] void print_products(const std::list<Product>& products);
-[[deprecated]] void print_products(const std::list<Product_On_Storage>& products);
+void add_regular_product(std::list<std::shared_ptr<Product>>& products);
+void add_product_on_storage(std::list<std::shared_ptr<Product>>& products, std::list<std::shared_ptr<Product_On_Storage>>& products_on_storage);
 
 #endif // ITAP_TESTS_MAIN_MENU_H

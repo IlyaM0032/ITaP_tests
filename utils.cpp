@@ -8,16 +8,6 @@
 #include <iostream>
 #include <string>
 
-void print_showables_list(const std::list<std::shared_ptr<Ishowable>>& showables) {
-    if (showables.empty()) {
-        std::cout << "Список пуст" << std::endl;
-    } else {
-        for (const std::shared_ptr<Ishowable>& showable : showables) {
-            std::cout << showable->show() << std::endl;
-        }
-    }
-}
-
 int read_int() {
     std::string input;
     bool success = false;

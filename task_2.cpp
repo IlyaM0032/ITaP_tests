@@ -94,11 +94,11 @@ bool Product_On_Storage::set_arrival_date(const std::string& formatted_string) {
     const int hour    = std::stoi(submatches[hour_index].str());
     const int min     = std::stoi(submatches[minute_index].str());
 
-    if (day<day_min or day>day_max)             return false;
-    if (month<month_min or month>month_max)     return false;
-    if (year<year_min or year>year_max)         return false;
-    if (hour<hour_min or hour>hour_max)         return false;
-    if (min<minute_min or min>minute_max)       return false;
+    if (day<day_min || day>day_max)             return false;
+    if (month<month_min || month>month_max)     return false;
+    if (year<year_min || year>year_max)         return false;
+    if (hour<hour_min || hour>hour_max)         return false;
+    if (min<minute_min || min>minute_max)       return false;
 
     std::tm date_tm = {};
     date_tm.tm_mday = day;
