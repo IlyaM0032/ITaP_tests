@@ -350,8 +350,7 @@ void add_product_on_storage(std::list<std::shared_ptr<Product>>& products, std::
 
     std::cout << "Введите дату поступления товара на склад (в формате \"31.12.1999 23:59\"): ";
     do {
-        std::string arrival_date;
-        std::getline(std::cin, arrival_date);
+        const time_t arrival_date = read_time();
         success = product_to_add->set_arrival_date(arrival_date);
         if (!success) std::cout << "Введенное значение \"" << arrival_date << "\" не соответствует требованиям. Попробуйте ещё раз: ";
     } while (!success);

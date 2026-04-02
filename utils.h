@@ -9,6 +9,9 @@
 #include <string>
 #include <iostream>
 
+#define DATE_FORMAT "%d.%m.%Y %H:%M"
+#define DATE_EXAMPLE "31.12.1999 23:59"
+
 class IShowable {
     public:
     virtual ~IShowable() = default;
@@ -28,5 +31,10 @@ int read_int();
 double read_double();
 int read_natural();
 char read_char();
+
+time_t read_time();
+std::string time_t_to_string(time_t t);
+
+
 
 #endif //UTILS_H

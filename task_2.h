@@ -6,13 +6,11 @@
 #define ITAP_TESTS_TASK_2_H
 #include "utils.h"
 
-#include <regex>
 #include <string>
-#define DATE_FORMAT "%d.%m.%Y %H:%M"
-#define DATE_EXAMPLE "31.12.1999 23:59"
-const std::regex date_pattern(R"(^(\d{2})\.(\d{2})\.(\d{4}) (\d{2}):(\d{2})$)");
+
 #define TM_YEAR_OFFSET 1900
 #define TM_MONTH_OFFSET 1
+
 enum submatches_indexes {
     entire_string_index = 0,
     day_index = 1,
@@ -81,15 +79,13 @@ class Product_On_Storage : public Product {
     [[nodiscard]] int get_storage_row() const {return storage_place.row;}
     [[nodiscard]] int get_storage_shelf() const {return storage_place.shelf;}
     [[nodiscard]] int get_storage_layer() const {return storage_place.layer;}
-    [[nodiscard]] time_t get_arrival_date_time_t() const {return arrival_date;}
-    [[nodiscard]] std::string get_arrival_date_string() const;
+    [[nodiscard]] time_t get_arrival_date() const {return arrival_date;}
 
     [[nodiscard]] bool set_storage_sector(char p_storage_sector);
     [[nodiscard]] bool set_storage_row(int p_storage_row);
     [[nodiscard]] bool set_storage_shelf(int p_storage_shelf);
     [[nodiscard]] bool set_storage_layer(int p_storage_layer);
     [[nodiscard]] bool set_arrival_date(time_t p_arrival_date);
-    [[nodiscard]] bool set_arrival_date(const std::string& formatted_string);
 
 
     [[nodiscard]] std::string show() const override;

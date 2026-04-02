@@ -5,6 +5,8 @@
 #include "utils.h"
 #include "task_1.h"
 
+#include <ctime>
+#include <iomanip>
 #include <iostream>
 #include <string>
 
@@ -70,4 +72,43 @@ char read_char() {
     } while (!success);
 
     return result;
+}
+
+time_t read_time() {
+    std::string input;
+    bool success = false;
+    time_t result = 0;
+    std::tm result_tm{};
+    do {
+        std::getline(std::cin, input);
+        std::istringstream input_stream {input};
+        input_stream >> std::get_time(&result_tm, DATE_FORMAT);
+
+        if (input_stream.fail()) {
+            std::cout << "Некорректный ввод. Попробуйте ещё раз: ";
+        } else {
+            const std::tm result_tm_copy = result_tm;
+            result = timegm(&result_tm);
+            if (
+                result_tm.tm_year != result_tm_copy.tm_year ||
+                result_tm.tm_mon != result_tm_copy.tm_mon ||
+                result_tm.tm_mday != result_tm_copy.tm_mday ||
+                result_tm.tm_hour != result_tm_copy.tm_hour ||
+                result_tm.tm_min != result_tm_copy.tm_min
+                ) {
+                std::cout << "Некорректный ввод. Попробуйте ещё раз: ";
+            } else {
+                success = true;
+            }
+
+        }
+
+    } while (!success);
+    return result;
+}
+
+std::string time_t_to_string(const time_t t) {
+    std::stringstream result;
+    result << std::put_time(std::gmtime(&t), "%c");
+    return result.str();
 }

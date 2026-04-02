@@ -43,11 +43,7 @@ std::string Product::show() const {
         ", Общая цена: " + std::to_string(get_total_price());
     return return_string;
 }
-std::string Product_On_Storage::get_arrival_date_string() const {
-    std::stringstream ss;
-    ss << std::put_time(std::localtime(&arrival_date), DATE_FORMAT);
-    return ss.str();
-}
+
 
 bool Product_On_Storage::set_storage_sector(const char p_storage_sector) {
     if (std::isalpha(p_storage_sector) && std::isupper(p_storage_sector)) {
@@ -84,39 +80,12 @@ bool Product_On_Storage::set_arrival_date(const time_t p_arrival_date) {
     }
     return false;
 }
-bool Product_On_Storage::set_arrival_date(const std::string& formatted_string) {
-    std::smatch submatches;
-    if (!std::regex_match(formatted_string, submatches, date_pattern)) return false;
 
-    const int day     = std::stoi(submatches[day_index].str());
-    const int month   = std::stoi(submatches[month_index].str());
-    const int year    = std::stoi(submatches[year_index].str());
-    const int hour    = std::stoi(submatches[hour_index].str());
-    const int min     = std::stoi(submatches[minute_index].str());
-
-    if (day<day_min || day>day_max)             return false;
-    if (month<month_min || month>month_max)     return false;
-    if (year<year_min || year>year_max)         return false;
-    if (hour<hour_min || hour>hour_max)         return false;
-    if (min<minute_min || min>minute_max)       return false;
-
-    std::tm date_tm = {};
-    date_tm.tm_mday = day;
-    date_tm.tm_mon  = month - TM_MONTH_OFFSET;
-    date_tm.tm_year = year - TM_YEAR_OFFSET;
-    date_tm.tm_hour = hour;
-    date_tm.tm_min  = min;
-    std::time_t date_time_t = std::mktime(&date_tm);
-
-    if (!set_arrival_date(date_time_t)) return false;
-
-    return true;
-}
 std::string Product_On_Storage::show() const {
 
     std::string return_string =
         Product::show() +
         ", Место на складе: " + storage_place.sector + '-' + std::to_string(storage_place.row) + '-' + std::to_string(storage_place.shelf) + '-' + std::to_string(storage_place.layer) +
-        ", Дата прибытия: " + get_arrival_date_string();
+        ", Дата прибытия: " + time_t_to_string(arrival_date);
     return return_string;
 }
