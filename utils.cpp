@@ -3,7 +3,6 @@
 // Студент группы 4503, Илья М, 2026
 
 #include "utils.h"
-#include "task_1.h"
 
 #include <ctime>
 #include <iomanip>

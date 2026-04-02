@@ -4,8 +4,6 @@
 
 #include "task_2.h"
 
-#include <regex>
-#include  <chrono>
 bool Product::set_name(std::string p_name) {
     if (!p_name.empty()) {
         name = std::move(p_name);

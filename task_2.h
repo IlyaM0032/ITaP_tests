@@ -8,31 +8,6 @@
 
 #include <string>
 
-#define TM_YEAR_OFFSET 1900
-#define TM_MONTH_OFFSET 1
-
-enum submatches_indexes {
-    entire_string_index = 0,
-    day_index = 1,
-    month_index = 2,
-    year_index = 3,
-    hour_index = 4,
-    minute_index = 5,
-};
-
-enum date_limits {
-    day_min = 1,
-    day_max = 31,
-    month_min = 1,
-    month_max = 12,
-    year_min = 1970,
-    year_max = 3000,
-    hour_min = 0,
-    hour_max = 23,
-    minute_min = 0,
-    minute_max = 59,
-};
-
 struct storage_place_s {
     char sector;
     int row;
