@@ -51,28 +51,28 @@ std::string Product_On_Storage::get_arrival_date_string() const {
 
 bool Product_On_Storage::set_storage_sector(const char p_storage_sector) {
     if (std::isalpha(p_storage_sector) && std::isupper(p_storage_sector)) {
-        storage_sector = p_storage_sector;
+        storage_place.sector = p_storage_sector;
         return true;
     }
     return false;
 }
 bool Product_On_Storage::set_storage_row(const int p_storage_row) {
     if (p_storage_row > 0) {
-        storage_row = p_storage_row;
+        storage_place.row = p_storage_row;
         return true;
     }
     return false;
 }
 bool Product_On_Storage::set_storage_shelf(const int p_storage_shelf) {
     if (p_storage_shelf > 0) {
-        storage_shelf = p_storage_shelf;
+        storage_place.shelf = p_storage_shelf;
         return true;
     }
     return false;
 }
 bool Product_On_Storage::set_storage_layer(const int p_storage_layer) {
     if (p_storage_layer > 0) {
-        storage_layer = p_storage_layer;
+        storage_place.layer = p_storage_layer;
         return true;
     }
     return false;
@@ -116,7 +116,7 @@ std::string Product_On_Storage::show() const {
 
     std::string return_string =
         Product::show() +
-        ", Место на складе: " + storage_sector + '-' + std::to_string(storage_row) + '-' + std::to_string(storage_shelf) + '-' + std::to_string(storage_layer) +
+        ", Место на складе: " + storage_place.sector + '-' + std::to_string(storage_place.row) + '-' + std::to_string(storage_place.shelf) + '-' + std::to_string(storage_place.layer) +
         ", Дата прибытия: " + get_arrival_date_string();
     return return_string;
 }

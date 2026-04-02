@@ -9,9 +9,9 @@
 #include <string>
 #include <iostream>
 
-class Ishowable {
+class IShowable {
     public:
-    virtual ~Ishowable() = default;
+    virtual ~IShowable() = default;
     [[nodiscard]] virtual std::string show() const = 0;
 };
 

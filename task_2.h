@@ -35,7 +35,16 @@ enum date_limits {
     minute_max = 59,
 };
 
-class Product : public Ishowable {
+struct storage_place_s {
+    char sector;
+    int row;
+    int shelf;
+    int layer;
+    storage_place_s(const char p_sector, const int p_row, const int p_shelf, const int p_layer):
+    sector(p_sector), row(p_row), shelf(p_shelf), layer(p_layer)  {}
+};
+
+class Product : public IShowable {
     std::string name;
     double quantity;
     std::string manufacturer;
@@ -60,22 +69,18 @@ class Product : public Ishowable {
 };
 
 class Product_On_Storage : public Product {
-    char storage_sector;
-    int storage_row;
-    int storage_shelf;
-    int storage_layer;
+    storage_place_s storage_place;
     time_t arrival_date;
 
     public:
     Product_On_Storage() :
-    storage_sector('\0'), storage_row(0),
-    storage_shelf(0), storage_layer(0), arrival_date(0) {}
+    storage_place('\0', 0, 0, 0), arrival_date(0) {}
     ~Product_On_Storage() override = default;
 
-    [[nodiscard]] char get_storage_sector() const {return storage_sector;}
-    [[nodiscard]] int get_storage_row() const {return storage_row;}
-    [[nodiscard]] int get_storage_shelf() const {return storage_shelf;}
-    [[nodiscard]] int get_storage_layer() const {return storage_layer;}
+    [[nodiscard]] char get_storage_sector() const {return storage_place.sector;}
+    [[nodiscard]] int get_storage_row() const {return storage_place.row;}
+    [[nodiscard]] int get_storage_shelf() const {return storage_place.shelf;}
+    [[nodiscard]] int get_storage_layer() const {return storage_place.layer;}
     [[nodiscard]] time_t get_arrival_date_time_t() const {return arrival_date;}
     [[nodiscard]] std::string get_arrival_date_string() const;
 
