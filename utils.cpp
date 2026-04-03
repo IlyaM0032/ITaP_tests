@@ -4,6 +4,11 @@
 
 #include "utils.h"
 
+#ifdef _WIN32
+#define timegm _mkgmtime
+#endif
+
+#include <chrono>
 #include <ctime>
 #include <iomanip>
 #include <iostream>
@@ -108,6 +113,12 @@ time_t read_time() {
 
 std::string time_t_to_string(const time_t t) {
     std::stringstream result;
-    result << std::put_time(std::gmtime(&t), "%c");
+    std::tm tm;
+#ifdef _WIN32
+    gmtime_s(&tm, &t);
+#else
+    gmtime_r(&t, &tm);
+#endif
+    result << std::put_time(&tm, "%c");
     return result.str();
 }
