@@ -15,7 +15,7 @@
 class IShowable {
     public:
     virtual ~IShowable() = default;
-    [[nodiscard]] virtual std::string show() const = 0;
+    virtual std::string show() const = 0;
 };
 
 template <typename T> void print_showables_list(const std::list<std::shared_ptr<T>>& list) {
